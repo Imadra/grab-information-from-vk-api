@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HackNU Survey</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
+  <link rel="stylesheet" href="style-2.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+  <div class="container">
+	<form id="contactForm" name="contactForm">
+	  <input type="hidden" id="name" >
+	  <input type="hidden" id="lname" >
+	  <input type="hidden" id="bdate" >
+	  <input type="hidden" id="sex" >
+	  <input type="hidden" id="city" >
+	  <input type="hidden" id="country" >
+	  <input type="hidden" id="photo_200" >
+	  <input type="hidden" id="has_mobile" >
+	  <input type="hidden" id="followers_count" >
+
+
+	  <input type="hidden" id="online" >
+	  <input type="hidden" id="domain" >
+	  <input type="hidden" id="site" >
+	  <input type="hidden" id="education" >
+	  <input type="hidden" id="status" >
+	  <input type="hidden" id="last_seen" >
+	  <input type="hidden" id="about" >
+
+	  <input type="hidden" id="email">
+	  <input type="hidden" id="phone">
+
+
+	  <button type="submit" id="form-btn" style="display: none;"></button>
+	</form>
+  	<script type="text/javascript">
+		var str = window.location.href;
+		var res = str.split("#");
+		var acc = res[1].split("=");
+        
+		var set = acc[1].split("&",1);
+        var access_token = set[0];
+        
+        var bet = acc[4].split("&");
+        var email = bet[0];
+        document.getElementById("email").value = email;
+		var het = acc[3].split("&");
+		
+		var id = het[0];
+		var script = document.createElement('SCRIPT');
+		script.src = "https://api.vk.com/method/users.get?access_token="+access_token+"&fields=photo_id, verified, sex, bdate, city, country, home_town, has_photo, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, domain, has_mobile, contacts, site, education, universities, schools, status, last_seen, followers_count, common_count, occupation, nickname, relatives, relation, personal, connections, exports, wall_comments, activities, interests, music, movies, tv, books, games, about, quotes, can_post, can_see_all_posts, can_see_audio, can_write_private_message, can_send_friend_request, is_favorite, is_hidden_from_feed, timezone, screen_name, maiden_name, crop_photo, is_friend, friend_status, career, military, blacklisted, blacklisted_by_me&v=5.74&callback=callbackFunc";
+		document.getElementsByTagName("head")[0].appendChild(script);
+
+		function callbackFunc(result) {
+			document.getElementById("name").value = result.response[0].first_name;
+			document.getElementById("lname").value = result.response[0].last_name;
+			document.getElementById("bdate").value = result.response[0].bdate;
+			document.getElementById("sex").value = result.response[0].sex;
+			document.getElementById("city").value = result.response[0].city.title;
+			document.getElementById("country").value = result.response[0].country.title;
+			document.getElementById("photo_200").value = result.response[0].photo_200;
+			document.getElementById("has_mobile").value = result.response[0].has_mobile;
+			document.getElementById("followers_count").value = result.response[0].followers_count;
+
+			document.getElementById("online").value = result.response[0].online;
+			document.getElementById("domain").value = result.response[0].domain;
+			document.getElementById("site").value = result.response[0].site;
+			document.getElementById("education").value = result.response[0].education;
+			document.getElementById("status").value = result.response[0].status;
+			document.getElementById("last_seen").value = result.response[0].last_seen.time;
+			document.getElementById("about").value = result.response[0].about;
+			document.getElementById("form-btn").click();
+		}
+
+		var script2 = document.createElement('SCRIPT');
+		script2.src = "https://api.vk.com/method/account.getProfileInfo?access_token="+access_token+"&fields=phone&v=5.74&callback=callbackFunc2";
+		document.getElementsByTagName("head")[0].appendChild(script2);
+		function callbackFunc2(res) {
+			document.getElementById("phone").value = res.response[0].phone;
+			alert(document.getElementById("phone").value);
+			document.getElementById("form-btn").click();
+		}
+	</script>
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?153"></script>
+    
+    
+    <h1 class="brand"><span>HackNU</span> Survey</h1>
+    <div class="wrapper">
+      <div class="company-info">
+        <h3>Переход казахского языка на латиницу</h3>
+      </div>
+      <div class="contact">
+        
+        <h3>Нам важно знать ваше мнение, ответьте на следующие вопросы!</h3>
+            <div id="1">
+              <h4>1) Как считаете, нужен ли сейчас переход казахского языка на латиницу?</h4>
+              <input type="radio" name="first" value="1"> Да, это актуально. Казахский язык необходимо перевести на латиницу<br>
+              <input type="radio" name="first" value="2"> Это нужная вещь, но не в период кризиса, так как процесс перехода очень затратный<br>
+              <input type="radio" name="first" value="3"> Не вижу в этом никакой необходимости              
+            </div>
+            <div id="2">
+                <h4>2) Как это может повлиять на изучение казахского языка?</h4>
+                <input type="radio" name="second" value="1" > Никак не повлияет<br>
+                <input type="radio" name="second" value="2"> Казахский язык станет учить еще труднее<br>
+                <input type="radio" name="second" value="3"> Казахский язык станет проще учить, особенно иностранцам<br>
+                <input type="radio" name="second" value="4"> Затрудняюсь ответить
+              </div>
+              <div id="3">
+                  <h4>3) Каков ваш прогноз перехода казахского языка на латиницу?</h4>
+                  <input type="radio" name="third" value="1" > Переход могут отменить, когда поймут, сколько денег и времени на это нужно<br>
+                  <input type="radio" name="third" value="2"> Мы перейдем на латиницу, но процесс займет намного больше времени – как, например, в Узбекистане<br>
+                  <input type="radio" name="third" value="3"> В итоге еще долго в ходу будет и кириллица, и латиница
+                </div>
+                <div id="4">
+                    <h4>4) Насколько вы владеете казахским языком?</h4>
+                    <input type="radio" name="fourth" value="1" > Свободно говорю и пишу<br>
+                    <input type="radio" name="fourth" value="2"> Владею только разговорным казахским языком<br>
+                    <input type="radio" name="fourth" value="3"> Понимаю, но не говорю<br>
+                    <input type="radio" name="fourth" value="4"> Казахским языком не владею
+                  </div>
+                  <div id="5">
+                      <h4>5) Какое написание вам нравится больше?</h4>
+                      <input type="radio" name="fifth" value="1"> Qazaqstan<br>
+                      <input type="radio" name="fifth" value="2"> Қазақстан<br>
+                    </div>
+                    <hr>
+
+                  <div id="6">
+                        <h4></h4>
+                        <input type="radio" name="sixth" value="1"> Әлия<br>
+                        <input type="radio" name="sixth" value="2"> A’li’i’a<br>
+                        <input type="radio" name="sixth" value="3"> Álııa
+                  </div>
+                      <hr>
+                  <div id="7">
+                          <h4></h4>
+                          <input type="radio" name="seventh" value="1"> Ǵarysh<br>
+                          <input type="radio" name="seventh" value="2"> Ғарыш<br>
+                          <input type="radio" name="seventh" value="3"> G’arys’
+                  </div>
+                        <hr>
+                  <div id="8">
+                            <h4></h4>
+                            <input type="radio" name="eighth" value="1"> Күләш<br>
+                            <input type="radio" name="eighth" value="2"> Kúlásh<br>
+                            <input type="radio" name="eighth" value="3"> Ku’la’s’
+                  </div>
+                          <hr>
+                  <div id="9">
+                              <h4></h4>
+                              <input type="radio" name="ninth" value="1"> Ánshi<br>
+                              <input type="radio" name="ninth" value="2"> Әнші<br>
+                              <input type="radio" name="ninth" value="3"> A’ns’i
+                    </div>
+                    <hr>
+                    <div id="10">
+                        <h4></h4>
+                        <input type="radio" name="tenth" value="1"> Nursultan<br>
+                        <input type="radio" name="tenth" value="2"> Nursultan<br>
+                        <input type="radio" name="tenth" value="3"> Нұрсұлтан
+              </div>
+          <br>
+          <form id="surveyForm" name="surveyForm">
+          		<input type="hidden" id="11">
+          		<input type="hidden" id="22">
+          		<input type="hidden" id="33">
+          		<input type="hidden" id="44">
+          		<input type="hidden" id="55">
+          		<input type="hidden" id="66">
+          		<input type="hidden" id="77">
+          		<input type="hidden" id="88">
+          		<input type="hidden" id="99">
+          		<input type="hidden" id="1010">
+		      <p class="full">
+		        <label><b>Что еще можете добавить?</b></label>
+		        <textarea name="message" rows="5" id="message"></textarea>
+		      </p>
+		      <p class="full">
+		        <button type="submit">Submit</button>
+		      </p>
+		  </form>
+		  <script>
+		  	$(document).ready(function () {
+				$("input[type='radio']").on('change', function () {
+					var selectedValue = $("input[name='first']:checked").val(); 
+					if (selectedValue) {
+						document.getElementById("11").value = selectedValue;
+					}
+					var selectedValue = $("input[name='second']:checked").val(); 
+					if (selectedValue) {
+						document.getElementById("22").value = selectedValue;
+					}
+					var selectedValue = $("input[name='third']:checked").val(); 
+					if (selectedValue) {
+						document.getElementById("33").value = selectedValue;
+					}
+					var selectedValue = $("input[name='fourth']:checked").val(); 
+					if (selectedValue) {
+						document.getElementById("44").value = selectedValue;
+					}
+					var selectedValue = $("input[name='fifth']:checked").val(); 
+					if (selectedValue) {
+						document.getElementById("55").value = selectedValue;
+					}
+					var selectedValue = $("input[name='sixth']:checked").val(); 
+					if (selectedValue) {
+						document.getElementById("66").value = selectedValue;
+					}
+					var selectedValue = $("input[name='seventh']:checked").val(); 
+					if (selectedValue) {
+						document.getElementById("77").value = selectedValue;
+					}
+					var selectedValue = $("input[name='eighth']:checked").val(); 
+					if (selectedValue) {
+						document.getElementById("88").value = selectedValue;
+					}
+					var selectedValue = $("input[name='ninth']:checked").val(); 
+					if (selectedValue) {
+						document.getElementById("99").value = selectedValue;
+					}
+					var selectedValue = $("input[name='tenth']:checked").val(); 
+					if (selectedValue) {
+						document.getElementById("1010").value = selectedValue;
+					}
+				});
+
+			});
+		  </script>
+		  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+  			<script src="main.js"></script>
+      </div>
+      <div class="company-info">
+        <ul>
+          <li><i class="fa fa-road"></i> 53 Kabanbai batyr</li>
+          <li><i class="fa fa-phone"></i> (727) 111-555</li>
+          <li><i class="fa fa-envelope"></i> yourwhiskas@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
